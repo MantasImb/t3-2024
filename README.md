@@ -2,8 +2,8 @@
 
 ## TODO
 
-- [ ] Make it deploy
-- [ ] Scaffold basic UI with mock data
+- [x] Make it deploy
+- [x] Scaffold basic UI with mock data
 - [ ] Set up a database
 - [ ] Attach database to UI
 - [ ] Set up authentication
@@ -23,6 +23,7 @@
 - [Sentry](https://sentry.io)
 - [PostHog](https://posthog.com)
 - [Upstash](https://upstash.com)
+- [Uploadthing](https://uploadthing.com)
 
 ## How do I deploy this?
 
