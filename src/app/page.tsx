@@ -26,7 +26,7 @@ async function Images() {
   );
 }
 
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <main className="p-4">
       <SignedOut>
