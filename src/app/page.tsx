@@ -10,7 +10,7 @@ async function Images() {
   const images = await getMyImages();
 
   return (
-    <div className="flex flex-wrap justify-center gap-4">
+    <div className="flex flex-wrap justify-center gap-4 p-4">
       {images.map((image) => (
         <div key={image.id}>
           <Link href={`/img/${image.id}`}>
@@ -29,7 +29,7 @@ async function Images() {
 
 export default function HomePage() {
   return (
-    <main className="p-4">
+    <>
       <SignedOut>
         <div className="h-full w-full text-center text-2xl">
           You must be signed in to view this page.
@@ -38,6 +38,6 @@ export default function HomePage() {
       <SignedIn>
         <Images />
       </SignedIn>
-    </main>
+    </>
   );
 }
