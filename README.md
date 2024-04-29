@@ -11,7 +11,7 @@
 - [x] Add image upload
 - [x] "taint" (server-only)
 - [x] Error management
-- [ ] Routing/image page (parallel route)
+- [x] Routing/image page (parallel route)
 - [ ] Delete button (Server Actions)
 - [ ] Analytics (PostHog)
 - [ ] Ratelimiting (Upstash)
