@@ -13,13 +13,7 @@ const config = {
     ignoreDuringBuilds: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "utfs.io",
-        port: "",
-      },
-    ],
+    remotePatterns: [{ hostname: "utfs.io" }],
   },
 };
 
