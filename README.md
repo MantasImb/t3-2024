@@ -10,7 +10,7 @@
 - [x] Set up authentication
 - [x] Add image upload
 - [x] "taint" (server-only)
-- [ ] Error management
+- [x] Error management
 - [ ] Routing/image page (parallel route)
 - [ ] Delete button (Server Actions)
 - [ ] Analytics (PostHog)

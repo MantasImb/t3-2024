@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 import { getMyImages } from "~/server/queries";
 
 // Force the page to be dynamic - not statically generated and cached
@@ -12,12 +13,14 @@ async function Images() {
     <div className="flex flex-wrap justify-center gap-4">
       {images.map((image) => (
         <div key={image.id}>
-          <Image
-            src={image.url}
-            alt={`Image ${image.id}`}
-            width={400}
-            height={400}
-          />
+          <Link href={`/img/${image.id}`}>
+            <Image
+              src={image.url}
+              alt={`Image ${image.id}`}
+              width={400}
+              height={400}
+            />
+          </Link>
         </div>
       ))}
     </div>
