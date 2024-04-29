@@ -40,7 +40,9 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className={`font-sans ${inter.variable} flex flex-col`}>
+        <body
+          className={`font-sans ${inter.variable} flex flex-col items-center`}
+        >
           <TopNav />
           {children}
           {modal}
