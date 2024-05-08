@@ -15,6 +15,16 @@ const coreConfig = {
   images: {
     remotePatterns: [{ hostname: "utfs.io" }],
   },
+  experimental: {
+    turbo: {
+      rules: {
+        "*.svg": {
+          loaders: ["@svgr/webpack"],
+          as: "*.js",
+        },
+      },
+    },
+  },
 };
 
 import { withSentryConfig } from "@sentry/nextjs";
