@@ -12,6 +12,7 @@
 - [x] "taint" (server-only)
 - [x] Error management
 - [x] Routing/image page (parallel route)
+- [ ] ShadCNify
 - [ ] Delete button (Server Actions)
 - [ ] Analytics (PostHog)
 - [ ] Ratelimiting (Upstash)
