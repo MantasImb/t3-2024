@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { db } from "~/server/db";
@@ -16,9 +16,12 @@ export const ourFileRouter = {
       // Can use this "req"^ to get info to rate limit users if the service would allow anonymous users
       // This code runs on your server before upload
       const user = auth();
-
       // If you throw, the user will not be able to upload
       if (!user.userId) throw new UploadThingError("Unauthorized");
+
+      const fullUserData = await clerkClient.users.getUser(user.userId);
+      if (!fullUserData?.privateMetadata?.["can-upload"])
+        throw new UploadThingError("Unauthorized");
 
       const { success } = await ratelimit.limit(user.userId);
       if (!success) throw new UploadThingError("Rate limited");
