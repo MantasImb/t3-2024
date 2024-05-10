@@ -1,7 +1,9 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { usePostHog } from "posthog-js/react";
 import { useUploadThing } from "~/utils/uploadthing";
 
 // inferred input off useUploadThing
@@ -70,11 +72,20 @@ function LoadingSpinnerSVG() {
   );
 }
 
+/**
+ * A simple upload button that uploads images to the server,
+ * will not be visible to signed-out users
+ */
 export function SimpleUploadButton() {
+  const { user } = useUser();
   const router = useRouter();
+  const posthog = usePostHog();
+
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin: () => {
-      toast(
+      posthog.capture("Upload begin");
+
+      toast.loading(
         <div className="flex items-center gap-2">
           <LoadingSpinnerSVG />
           <span className="text-lg">Uploading...</span>
@@ -85,12 +96,24 @@ export function SimpleUploadButton() {
         },
       );
     },
-    onClientUploadComplete: () => {
+    onUploadError: (err) => {
+      posthog.capture("Upload failed", {
+        error: err.message,
+      });
+
       toast.dismiss("upload-begin");
-      toast(<span className="text-lg">Upload complete!</span>);
+      toast.error(<span className="text-lg">Upload failed</span>);
+    },
+    onClientUploadComplete: () => {
+      posthog.capture("Upload complete");
+
+      toast.dismiss("upload-begin");
+      toast.info(<span className="text-lg">Upload complete!</span>);
       router.refresh();
     },
   });
+
+  if (!user) return null;
 
   return (
     <div>

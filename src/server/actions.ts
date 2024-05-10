@@ -19,7 +19,7 @@ export async function deleteImage(id: number) {
 
   posthog.capture({
     distinctId: user.userId,
-    event: "Image Deleted",
+    event: "Image deleted",
     properties: {
       imageId: id,
     },
